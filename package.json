@@ -1,11 +1,26 @@
 {
-  "name": "2ecomm",
+  "name": "ecommerce",
   "version": "1.0.0",
-  "description": "E commerce website ",
-  "main": "server.js",
+  "description": "E-Commerce website",
+  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev":"npx nodemon backend/server.js"
   },
-  "author": "Malav Thakkar",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malav22/E-Comm-Restaurant-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malav22/E-Comm-Restaurant-/issues"
+  },
+  "homepage": "https://github.com/malav22/E-Comm-Restaurant-#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.5"
+  }
 }
