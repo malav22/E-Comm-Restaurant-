@@ -24,7 +24,9 @@ const server = app.listen(process.env.PORT,()=>{
     console.log(`listening on port ${process.env.PORT}`);
 });
 
-
+app.get('/', function(req, res){
+    res.send("HelloWorld");
+});
 //Unhandled promise Rejections
 
 process.on("unhandledRejection",err=>{
