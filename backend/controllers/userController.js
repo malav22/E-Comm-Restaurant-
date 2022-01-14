@@ -1,6 +1,7 @@
 const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
+const Product = require("../models/productModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require('crypto');
@@ -129,4 +130,157 @@ exports.resetPassword = catchAsyncErrors(async(req, res,next)=>{
 
     await user.save();
     sendToken(user,200,res);
+});
+
+//get user details
+exports.getUserDetails = catchAsyncErrors(async(req, res,next)=>{
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success : true,
+        user,
+    });
+});
+
+//Update user password
+exports.updatePassword = catchAsyncErrors(async(req, res,next)=>{
+    const user = await User.findById(req.user.id).select("+password");
+    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+    if(!isPasswordMatched){
+        return next(new ErrorHander("Old password is incorrect."),400);
+    }
+
+    if(req.body.newPassword !== req.body.confirmPassword){
+        return next(new ErrorHander("Password does not match",400));
+    }
+
+    user.password = req.body.newPassword;
+    await user.save();
+
+    sendToken(user,200,res);
+});
+
+//Update user profile
+exports.updateProfile = catchAsyncErrors(async(req, res,next)=>{
+    
+    newUserData = {
+        name : req.body.name,
+        email : req.body.email,
+    }
+
+    // we will add cloudinary later
+    const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
+        new :true,
+        runValidators : true,
+        useFindAndModify : false,
+    });
+    res.status(200).json({
+        success : true,
+    });
+});
+
+//Get all users --Admin
+
+exports.getAllUser = catchAsyncErrors(async(req, res)=>{
+    const users = await User.find();
+    res.status(200).json({
+        succes : true,
+        users
+    });
+});
+
+
+//Get single user --Admin
+exports.getSingleUser = catchAsyncErrors(async(req, res)=>{
+    const user = await User.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHander(`User does not exist with given id: ${req.params.id}`),400);
+    }
+    res.status(200).json({
+        succes : true,
+        user
+    });
+});
+
+//Update User role --Admin
+exports.updateUserRole = catchAsyncErrors(async(req, res,next)=>{
+    
+    newUserData = {
+        // name : req.body.name,
+        // email : req.body.email,
+        role : req.body.role,
+    }
+
+    // we will add cloudinary later
+    const user = await User.findByIdAndUpdate(req.params.id,newUserData,{
+        new :true,
+        runValidators : true,
+        useFindAndModify : false,
+    });
+    if(!user){
+        return next(new ErrorHander(`User does not exist with given id: ${req.params.id}`),400);
+    }
+    res.status(200).json({
+        success : true,
+    });
+});
+
+//Delete User --Admin
+
+exports.deleteUser = catchAsyncErrors(async(req, res,next)=>{
+    
+    const user = await User.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHander(`User does not exist with given id: ${req.params.id}`),400);
+    }
+    await user.remove();
+    // we will remove cloudinary later
+    
+    res.status(200).json({
+        success : true,
+        message : 'User deleted successfully',
+    });
+});
+
+//Create new Review or Update reviews
+
+exports.createProductReview = catchAsyncErrors(async(req, res,next)=>{
+    
+    const {rating,comment,productId} = req.body;
+
+
+    const review = {
+        user : req.user._id,
+        name : req.user.name,
+        rating : Number(rating),
+        comment,
+    }
+
+    const product = await Product.findById(productId);
+
+    const isReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString());
+
+    if(isReviewed){
+        product.reviews.forEach(rev =>{
+            if(rev.user.toString() === req.user._id.toString()){
+                rev.rating = rating;
+                rev.comment = comment;
+            }
+        });
+    }else{
+        product.reviews.push(review);
+        product.numOfReviews = product.reviews.length;
+    }
+    let avg = 0;
+    product.rating = product.reviews.forEach(rev => {
+        avg += rev.rating;
+    });
+    product.rating = avg/ product.reviews.length;
+
+    await product.save({validateBeforeSave : false});
+    res.status(200).json({
+        success : true,
+
+    })
 });
