@@ -20,8 +20,8 @@ const Footer = () => {
                 </div>
                 <div className="rightFooter">
                     <h4>Follow Us</h4>
-                    <a href="https://www.linkedin.com/in/malav-thakkar-011517200/">LinkedIn</a>
-                    <a href="https://twitter.com/Malavthakkar22">Twitter</a>
+                    <a target="_blank" href="https://www.linkedin.com/in/malav-thakkar-011517200/">LinkedIn</a>
+                    <a target="_blank" href="https://twitter.com/Malavthakkar22">Twitter</a>
                 </div>
             </footer>
         </div>
