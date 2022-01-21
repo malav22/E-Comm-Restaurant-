@@ -1,14 +1,15 @@
 import React, { Component }  from 'react';
 import {ReactNavbar} from "overlay-navbar"
-import logo from "../../../images/logo.png";
+import logo from "../../../images/logo3.png";
 const options = {
     burgerColor : '#ddd',
     burgerColorHover: "#eb4034",
     logo,
-    logoWidth: "20vmax",
+    logoWidth: "12vmax",
     navColor1: "white",
-    logoHoverSize: "10px",
+    logoHoverSize: "20px",
     logoHoverColor: "#eb4",
+    logoBorderRadius: "50%",
     link1Text: "Home",
     link2Text: "Products",
     link3Text: "Contact",
@@ -17,7 +18,7 @@ const options = {
     link2Url: "/products",
     link3Url: "/contact",
     link4Url: "/about",
-    link1Size: "2vmax",
+    link1Size: "3vmax",
     link1Color: "rgba(35, 35, 35,0.8)",
     nav1justifyContent: "flex-end",
     nav2justifyContent: "flex-end",
@@ -27,8 +28,11 @@ const options = {
     link1Margin: "1vmax",
     profileIconUrl: "/login",
     profileIconColor: "rgba(35, 35, 35,0.8)",
+    profileIconSize: "4vmax",
     searchIconColor: "rgba(35, 35, 35,0.8)",
+    searchIconSize: "3vmax",
     cartIconColor: "rgba(35, 35, 35,0.8)",
+    cartIconSize: "3vmax",
     profileIconColorHover: "#eb4034",
     searchIconColorHover: "#eb4034",
     cartIconColorHover: "#eb4034",
