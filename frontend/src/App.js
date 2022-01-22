@@ -8,6 +8,8 @@ import Home from "./component/Home/Home.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import { useAlert } from 'react-alert'
 import Loader from './component/layout/Loader/Loader';
+import Products from './component/Product/Products.js'
+import Search from './component/Product/Search.js'
 
 function App() {
   const alert = useAlert()
@@ -26,6 +28,9 @@ function App() {
         <Route  path="/" element={<Home />}></Route>
         <Route  path="/loader" element={<Loader />}></Route>
         <Route  path="/product/:id" element={<ProductDetails />}></Route>
+        <Route  path="/products" element={<Products />}></Route>
+        <Route  path="/products/:keyword" element={<Products />}></Route>
+        <Route  path="/Search" element={<Search />}></Route>
       </Routes>
       <Footer/>      
     </BrowserRouter>
