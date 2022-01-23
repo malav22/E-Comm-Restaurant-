@@ -70,26 +70,35 @@
   }
   
   .filterBox {
-    width: 10vmax;
-    position: absolute;
-    top: 10vmax;
-    right: 3vmax;
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    border-radius: 10px;
+    background-color:rgb(233, 233, 233);
+    /* position: absolute; */
+    /* top: 10vmax;
+    right: 3vmax; */
   }
   
   .categoryBox {
     padding: 0%;
+    display: grid;
+    grid-template-columns: 33.33% 33.34% 33.33%;
   }
   
   .category-link {
     list-style: none;
     color: rgba(0, 0, 0, 0.61);
-    font: 400 0.8vmax "Roboto";
+    font: 400 1.2vmax "Roboto";
     margin: 0.4vmax;
     cursor: pointer;
     transition: all 0.5s;
+    text-align: center;
   }
   .category-link:hover {
     color: tomato;
+    background-color:rgb(220, 220, 220);
+    border-radius: 10px;
   }
   
   .filterBox > fieldset {
@@ -106,7 +115,13 @@
     .page-link {
       font: 300 1.7vmax "Roboto";
     }
+    .categoryBox {
+      padding: 0%;
+      display: grid;
+      grid-template-columns: 100%;
+    }
     .category-link {
       font: 400 1.8vmax "Roboto";
     }
+
   }
