@@ -10,6 +10,7 @@ import { useAlert } from 'react-alert'
 import Loader from './component/layout/Loader/Loader';
 import Products from './component/Product/Products.js'
 import Search from './component/Product/Search.js'
+import LoginSignUp from './component/User/LoginSignUp.js'
 
 function App() {
   const alert = useAlert()
@@ -31,6 +32,7 @@ function App() {
         <Route  path="/products" element={<Products />}></Route>
         <Route  path="/products/:keyword" element={<Products />}></Route>
         <Route  path="/Search" element={<Search />}></Route>
+        <Route  path="/login" element={<LoginSignUp />}></Route>
       </Routes>
       <Footer/>      
     </BrowserRouter>
