@@ -201,6 +201,7 @@ const LoginSignUp = () => {
                     type="file"
                     name="avatar"
                     accept="image/*"
+                    required={true}
                     onChange={registerDataChange}
                   />
                 </div>
