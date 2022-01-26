@@ -31,7 +31,7 @@ const server = app.listen(process.env.PORT,()=>{
 });
 
 app.get('/', function(req, res){
-    res.send("HelloWorld");
+    res.send(`<h1 style="text-align: center">Hello World<h1>`);
 });
 //Unhandled promise Rejections
 

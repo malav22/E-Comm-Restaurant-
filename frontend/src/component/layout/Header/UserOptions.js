@@ -21,44 +21,44 @@ const UserOptions = ({ user }) => {
   const dispatch = useDispatch();
 
   const options = [
-    // { icon: <ListAltIcon />, name: "Orders", func: orders },
-    // { icon: <PersonIcon />, name: "Profile", func: account },
-    // {
-    //   icon: (
-    //     <ShoppingCartIcon
-    //       style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
-    //     />
-    //   ),
-    //   name: `Cart(${cartItems.length})`,
-    //   func: cart,
-    // },
+    { icon: <ListAltIcon />, name: "Orders" , func : orders },
+    { icon: <PersonIcon />, name: "Profile", func : account},
+    {
+      icon: (
+        <ShoppingCartIcon
+          // style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      // name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
-//   if (user.role === "admin") {
-//     options.unshift({
-//       icon: <DashboardIcon />,
-//       name: "Dashboard",
-//       func: dashboard,
-//     });
-//   }
+  if (user.role === "admin") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: dashboard,
+    });
+  }
 
-//   function dashboard() {
-//     navigate("/admin/dashboard");
-//   }
+  function dashboard() {
+    navigate("/admin/dashboard");
+  }
 
-//   function orders() {
-//     navigate("/orders");
-//   }
-//   function account() {
-//     navigate("/account");
-//   }
-//   function cart() {
-//     navigate("/cart");
-//   }
+  function orders() {
+    navigate("/orders");
+  }
+  function account() {
+    navigate("/account");
+  }
+  function cart() {
+    navigate("/cart");
+  }
   function logoutUser() {
     dispatch(logout());
-    alert.success("Logout Successfully");
+    alert.success("Logout Successful");
   }
 
   return (
