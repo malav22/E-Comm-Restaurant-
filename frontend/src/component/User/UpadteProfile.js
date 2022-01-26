@@ -47,6 +47,9 @@ const UpdateProfile = () => {
   };
 
   useEffect(() => {
+    if(!isAuthenticated){
+      navigate("/login");
+    }
     if(isAuthenticated) if (user) {
       setName(user.name);
       setEmail(user.email);
