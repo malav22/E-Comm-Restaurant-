@@ -94,7 +94,7 @@ exports.forgotPassword = catchAsyncErrors(async(req, res,next)=>{
     try{
         await sendEmail({
             email : user.email,
-            subject : `Ecommerce password recovery`,
+            subject : `ShopKart Password Reset`,
             message,
 
         });
