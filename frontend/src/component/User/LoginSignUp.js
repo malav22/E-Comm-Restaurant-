@@ -72,23 +72,24 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   }
-  const  redirect = location.pathname ? location.pathname.split('=')[1] : "/account";
+  // const  redirect = location.pathname ? location.pathname.split('=')[1] : "/account";
   // console.log(location.pathname.split('/')[1]);
-  // const redirect = location.search ? location.search.split("=")[1] : "/account";
+  const redirect = location.search ? `/${location.search.split("=")[1]}` : "/account";
   let val = "Login - SignUp";
 
     useEffect(() => {
+      // console.log(location.search.split("=")[1]);
       if (error) {
         alert.error(error);
         dispatch(clearErrors());
       }
       if (isAuthenticated) {
-        navigate("/account");
+        if(redirect==='/account')alert.success(`Welcome :\n${userName}`);
+        navigate(redirect);
         // const val = useSelector(
         //   (state) => state.user
         // );
         // { name, email, password } = user;
-        alert.success(`Welcome :\n${userName}`);
         // console.log(val);
       }
   

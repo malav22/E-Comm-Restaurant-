@@ -13,7 +13,7 @@ import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const UserOptions = ({ user }) => {
-//   const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -26,10 +26,10 @@ const UserOptions = ({ user }) => {
     {
       icon: (
         <ShoppingCartIcon
-          // style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
         />
       ),
-      // name: `Cart(${cartItems.length})`,
+      name: `Cart(${cartItems.length})`,
       func: cart,
     },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
