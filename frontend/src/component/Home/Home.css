@@ -27,11 +27,11 @@
     cursor: pointer;
     background-color: white;
     border: 1px solid white;
-    border-radius: 0;
+    border-radius: 5px;
     padding: 1vmax;
     transition: all 0.5s;
     width: 9vmax;
-    font: 500 1vmax "Roboto";
+    font: 500 1.5vmax "Roboto";
   }
   .banner > a > button:hover {
     background-color: rgba(255, 255, 255, 0);
