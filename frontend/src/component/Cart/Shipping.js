@@ -37,6 +37,7 @@ const Shipping = () => {
       saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
     );
     navigate("/order/confirm");
+    // navigate("/login?redirect=order/confirm");
   };
 
   return (
