@@ -45,6 +45,7 @@ const UpdateProduct = ({ history, match }) => {
     "Attire",
     "Camera",
     "SmartPhones",
+    "Others",
   ];
 
 //   const productId = match.params.id;

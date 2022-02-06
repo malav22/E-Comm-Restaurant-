@@ -19,6 +19,7 @@ const categories = [
   "SmartPhones",
   "Camera",
   "Attire",
+  "Others",
 ];
 
 
