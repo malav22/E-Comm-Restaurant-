@@ -36,6 +36,15 @@ import Dashboard from './component/Admin/Dashboard.js';
 import ProductList from './component/Admin/ProductList.js';
 import NewProduct from './component/Admin/NewProduct.js';
 import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import ProcessOrder from "./component/Admin/ProcessOrder.js";
+import UsersList from "./component/Admin/UsersList.js";
+import UpdateUser from "./component/Admin/UpdateUser.js";
+import ProductReviews from "./component/Admin/ProductReviews.js";
+import Contact from "./component/layout/Contact/Contact.js";
+import About from "./component/layout/About/About.js";
+import NotFound from "./component/layout/Not Found/NotFound.js";
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -97,6 +106,23 @@ function App() {
         <Route path="/admin/products" element={<ProductList/>}></Route>
         <Route path="/admin/product/:id" element={<UpdateProduct/>} ></Route>
         <Route path="/admin/product" element={<NewProduct/>}></Route>
+        <Route path="/admin/orders" element={<OrderList/>}></Route>
+        <Route path="/admin/order/:id" element={<ProcessOrder/>}/>
+
+        <Route path="/admin/users" element={<UsersList/>} />
+
+        <Route path="/admin/user/:id" element={<UpdateUser/>} />
+
+        <Route path="/admin/reviews" element={<ProductReviews/>}/>
+
+        <Route
+          element={
+            window.location.pathname === "/process/payment" ? null : NotFound
+          }
+        />
+        <Route  path="/contact" element={<Contact/>} />
+
+        <Route path="/about" element={<About/>} />
       </Routes>
       <Footer/>      
     </BrowserRouter>

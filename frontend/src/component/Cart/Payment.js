@@ -49,7 +49,7 @@ const Payment = ({ history }) => {
       
       const submitHandler = async (e) => {
         e.preventDefault();
-        
+        alert.show("Please wait while we are processing your payment.");
         payBtn.current.disabled = true;
         if(!isAuthenticated){
           navigate("/login");
@@ -97,10 +97,10 @@ const Payment = ({ history }) => {
                                       id: result.paymentIntent.id,
                                       status: result.paymentIntent.status,
                                     };
-                            
+                                    order.paidAt = Date.now();
                                     dispatch(createOrder(order));
-                            
                                     navigate("/success");
+                                    localStorage.clear();
                                   } else {
                                       alert.error("There's some issue while processing payment ");
                                     }
@@ -113,7 +113,7 @@ const Payment = ({ history }) => {
   
   
   useEffect(() => {
-    // alert("Please do not reload this page.");
+    alert.show("Please do not reload this page.");
     
     if (error) {
       alert.error(error);

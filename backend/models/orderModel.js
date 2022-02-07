@@ -57,20 +57,20 @@ const orderSchema = mongoose.Schema({
         ref : "User",
         required : true,
     },
-    // paymentInfo : {
-    //     id : {
-    //         type : String,
-    //         required : true,
-    //     },
-    //     staus : {
-    //         type : String,
-    //         required : true,
-    //     }
-    // },
-    // paidAt : {
-    //     type : Date,
-    //     required : true,
-    // },
+    paymentInfo : {
+        id : {
+            type : String,
+            required : true,
+        },
+        status : {
+            type : String,
+            required : true,
+        }
+    },
+    paidAt : {
+        type : Date,
+        required : true,
+    },
     itemsPrice : {
         type : Number,
         default : 0,

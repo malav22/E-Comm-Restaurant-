@@ -16,7 +16,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import { useLocation,useNavigate } from "react-router-dom";
-const UpdateProduct = ({ history, match }) => {
+const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
     const navigate = useNavigate();
