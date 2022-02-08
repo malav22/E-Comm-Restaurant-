@@ -42,7 +42,7 @@ const options = {
 const Header = () =>{
     return(<>
     <ReactNavbar  {...options}/>
-      {console.log("header working")}
+      {/* {console.log("header working")} */}
     </>)
 }
 
