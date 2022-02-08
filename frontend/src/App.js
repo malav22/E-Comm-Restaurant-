@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './component/layout/Header/Header.js';
-import { BrowserRouter , Route,Routes } from 'react-router-dom';
+import { BrowserRouter , Route,Routes,Switch } from 'react-router-dom';
 import webFont from 'webfontloader';
 import React  from 'react';
 import Footer from './component/layout/Footer/Footer.js';
@@ -71,23 +71,9 @@ function App() {
     <BrowserRouter>
       <Header/>
       {isAuthenticated && <UserOptions user={user} />}
+
       <Routes>
-        <Route  path="/" element={<Home />}></Route>
-        <Route  path="/loader" element={<Loader />}></Route>
-        <Route  path="/product/:id" element={<ProductDetails />}></Route>
-        <Route  path="/products" element={<Products />}></Route>
-        <Route  path="/products/:keyword" element={<Products />}></Route>
-        <Route  path="/Search" element={<Search />}></Route>
-        <Route  path="/login" element={<LoginSignUp />}></Route>
-        <Route  path="/account" element={<Profile />}></Route>
-        <Route  path="/me/update" element={<UpdateProfile />}></Route>
-        <Route  path="/password/update" element={<UpdatePassword />}></Route>
-        <Route  path="/password/forgot" element={<ForgotPassword />}></Route>
-        <Route path="/password/reset/:token" element={<ResetPassword/>}></Route>
-        <Route path="/cart" element={<Cart/>}></Route>
-        <Route path="/shipping" element={<Shipping/>}></Route>
-        <Route path="/order/confirm" element={<ConfirmOrder/>}></Route>
-        {stripeApiKey &&
+      {isAuthenticated && stripeApiKey &&
             <Route path="/process/payment" element={
               <Elements stripe={loadStripe(stripeApiKey)}>
                 <Payment/>
@@ -95,34 +81,45 @@ function App() {
             }>
             </Route>
         }
-        <Route path="/success" element={<OrderSuccess/>}></Route>
-        <Route path="/orders" element={
-          // <ProtectedRoute>
-            <MyOrders/>
-          // </ProtectedRoute>
-        }></Route>
-        <Route path="/order/:id" element={<OrderDetails/>}></Route>
-        <Route path="/admin/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/admin/products" element={<ProductList/>}></Route>
-        <Route path="/admin/product/:id" element={<UpdateProduct/>} ></Route>
-        <Route path="/admin/product" element={<NewProduct/>}></Route>
-        <Route path="/admin/orders" element={<OrderList/>}></Route>
-        <Route path="/admin/order/:id" element={<ProcessOrder/>}/>
+        <Route  path="/" element={<Home />}></Route>
+        {/* <Route  path="/loader" element={<Loader />}></Route> */}
+        <Route  path="/product/:id" element={<ProductDetails />}></Route>
+        <Route  path="/products" element={<Products />}></Route>
+        <Route  path="/products/:keyword" element={<Products />}></Route>
+        <Route  path="/Search" element={<Search />}></Route>
+        <Route  path="/login" element={<LoginSignUp />}></Route>
 
-        <Route path="/admin/users" element={<UsersList/>} />
+        {isAuthenticated && <Route  path="/account" element={<Profile />}></Route>}
+        {isAuthenticated &&<Route  path="/me/update" element={<UpdateProfile />}></Route>}
+        {isAuthenticated &&<Route  path="/password/update" element={<UpdatePassword />}></Route>}
+        <Route  path="/password/forgot" element={<ForgotPassword />}></Route>
+        <Route path="/password/reset/:token" element={<ResetPassword/>}></Route>
+        <Route path="/cart" element={<Cart/>}></Route>
+        <Route path="/shipping" element={<Shipping/>}></Route>
+        {isAuthenticated && <Route path="/order/confirm" element={<ConfirmOrder/>}></Route>}
+        {isAuthenticated && <Route path="/success" element={<OrderSuccess/>}></Route>}
+        {isAuthenticated && <Route path="/orders" element={<MyOrders/>}></Route>}
+        {isAuthenticated && <Route path="/order/:id" element={<OrderDetails/>}></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/dashboard" element={<Dashboard/>}></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/products" element={<ProductList/>}></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/product/:id" element={<UpdateProduct/>} ></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/product" element={<NewProduct/>}></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/orders" element={<OrderList/>}></Route>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/order/:id" element={<ProcessOrder/>}/>}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/users" element={<UsersList/>} />}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/user/:id" element={<UpdateUser/>} />}
+        {isAuthenticated && user.role === 'admin' && <Route path="/admin/reviews" element={<ProductReviews/>}/>}
 
-        <Route path="/admin/user/:id" element={<UpdateUser/>} />
+        {/* <Route path="/admin/dashboard" element={
+        <ProtectedRoute  isAdmin={true}>
+          <Dashboard/>
+        </ProtectedRoute>}></Route> */}
+        
 
-        <Route path="/admin/reviews" element={<ProductReviews/>}/>
-
-        <Route
-          element={
-            window.location.pathname === "/process/payment" ? null : NotFound
-          }
-        />
         <Route  path="/contact" element={<Contact/>} />
 
         <Route path="/about" element={<About/>} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
       <Footer/>      
     </BrowserRouter>

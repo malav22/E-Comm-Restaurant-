@@ -244,7 +244,7 @@ exports.updateUserRole = catchAsyncErrors(async(req, res,next)=>{
     });
     // console.log(user._id);
     // console.log(user._id=="61f151c0e56ef7f35d594668");
-    if(user._id=="61f151c0e56ef7f35d594668"){
+    if(user._id=="62027f6aba929a16eade06a9"){
         return next(new ErrorHander(`You cannot change role FOUNDER of this Website.`),400);
     }
     if(!user){
@@ -260,7 +260,7 @@ exports.updateUserRole = catchAsyncErrors(async(req, res,next)=>{
 exports.deleteUser = catchAsyncErrors(async(req, res,next)=>{
     
     const user = await User.findById(req.params.id);
-    if(user._id=="61f151c0e56ef7f35d594668"){
+    if(user._id=="62027f6aba929a16eade06a9"){
         return next(new ErrorHander(`You cannot delete FOUNDER of this Website`),400);
     }
     if(!user){
