@@ -100,7 +100,7 @@ const Payment = ({ history }) => {
                                     order.paidAt = Date.now();
                                     dispatch(createOrder(order));
                                     navigate("/success");
-                                    localStorage.clear();
+                                    // localStorage.clear();
                                   } else {
                                       alert.error("There's some issue while processing payment ");
                                     }

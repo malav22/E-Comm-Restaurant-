@@ -1,5 +1,5 @@
-import React, { Component,Fragment,useEffect } from 'react';
-import {CgMouse} from 'react-icons/all';
+import React, {Fragment,useEffect } from 'react';
+// import {CgMouse} from 'react-icons/all';
 import './Home.css';
 import ProductCard from './ProductCard.js';
 import MetaData from '../layout/Header/MetaData';
@@ -7,25 +7,19 @@ import {getProduct,clearErrors} from "../../actions/productAction";
 import {useSelector,useDispatch} from "react-redux";
 import Loader from '../layout/Loader/Loader';
 import {useAlert} from 'react-alert';
-// import {CLEAR_ERRORS} from '../../constants/productConstants';
 
 const Home = () =>{
     const alert = useAlert();
     const dispatch = useDispatch();
     let { loading, error, products } = useSelector((state) => state.products);
 
-
     useEffect(() => {
         console.log(error);
         if (error) {
-            // alert.error(error);
             dispatch(clearErrors());
         }
         dispatch(getProduct());
-    }, [dispatch]);
-    if (error) {
-        alert.error(error);
-    }
+    }, [dispatch,error]);
     
 
     return (
@@ -40,7 +34,8 @@ const Home = () =>{
 
             <a href="#container">
                 <button>
-                    Scroll <CgMouse/>
+                    {/* Scroll <CgMouse/> */}
+                    Scroll
                 </button>
             </a>
         </div>
@@ -51,8 +46,6 @@ const Home = () =>{
         </div>
         <div className="container" id="container">
             {products && products.map((product) => <ProductCard product={product}/>)}
-            {/* <Product product={products[0]}/>     */}    
-
         </div>
     </Fragment>)}
         </Fragment>
